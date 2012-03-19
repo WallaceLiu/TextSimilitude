@@ -17,126 +17,138 @@ namespace TextSimilitude
             InitializeComponent();
             AllTextReset();
         }
-    
+
         private void buttonCompare_Click(object sender, EventArgs e)
         {
             string termName = Regex.Replace(textBoxTermName.Text, @"(?is)\s*", "");
+
             if (termName.Length == 0)
                 MessageBox.Show("请输入词条名称", "提示");
             else
             {
-                AllTextReset();
-                BaikeEntry baidu = new BaikeEntry("baidu", textBoxTermName.Text);
-                BaikeEntry hudong = new BaikeEntry("hudong", textBoxTermName.Text);
+                AllTextReset();   //清除上一次查询的信息
+                BaikeEntry baidu  = new BaikeEntry("baidu", termName);
+                BaikeEntry hudong = new BaikeEntry("hudong", termName);
+
                 GetBaiduDetails(baidu);
                 GetHudongDetails(hudong);
+
                 if (!baidu.errExist && !hudong.errExist)
                     ComputeSimilitude(baidu, hudong);
 
-                //webBrowserBaidu.DocumentText = baidu.preview;
-                //webBrowserHudong.DocumentText = hudong.preview;
-
-                //测试
+                if (checkBoxPreview.Checked)
+                {
+                    webBrowserBaidu.DocumentText  = baidu.preview;
+                    webBrowserHudong.DocumentText = hudong.preview;
+                }
                 
-                //richTextBoxBaiduText.Text = baidu.textTmp;
-                //richTextBoxHudongText.Text = hudong.textTmp;
+
+                /*********************  测试  *****************************/
+                //richTextBoxBaiduText.Text  = baidu.preview;
+                //richTextBoxHudongText.Text = hudong.preview;
             }
+
         }
 
+        //清空所有文本控件的内容 
         private void AllTextReset()
         {
-            textBoxBaidu.Text = "";
-            richTextBoxBaiduText.Text = "";
+            //清除百度文本控件内容
+            textBoxBaidu.Text             = "";
+            richTextBoxBaiduText.Text     = "";
             richTextBoxBaiduTermFreq.Text = "";
-            labelBaiduTextNum.Text = "";
-            labelBaiduWordNum.Text = "";
+            labelBaiduTextNum.Text        = "";
+            labelBaiduWordNum.Text        = "";
 
-            textBoxHudong.Text = "";
-            richTextBoxHudongText.Text = "";
+            //清除互动文本控件内容
+            textBoxHudong.Text             = "";
+            richTextBoxHudongText.Text     = "";
             richTextBoxHudongTermFreq.Text = "";
-            labelHudongTextNum.Text = "";
-            labelHudongWordNum.Text = "";
+            labelHudongTextNum.Text        = "";
+            labelHudongWordNum.Text        = "";
 
-            labelSimilitude.Text = "";
+            labelSimilitude.Text  = "";
             labelSameWordNum.Text = "";
         }
 
-        private int GetBaiduDetails(BaikeEntry baidu)
+        private void GetBaiduDetails(BaikeEntry baidu)
         {
             /************************************************************************/
-            /* 1搜索百科词条                                                        */
+            /* 1.搜索百科词条
+            /*    errExist：此处用来判断词条是否存在,SourceHTML会修改其值
             /************************************************************************/
             SourceHTML.GetBaidu(baidu);
             if (baidu.errExist)
             {
                 textBoxBaidu.Text = baidu.errMsg;
-                return -1;
+                return;
             }
             textBoxBaidu.Text = baidu.url;
-            baidu.errExist = true;
+            baidu.errExist    = true;
 
             /************************************************************************/
-            /* 2提取网页正文                                                        */
+            /* 2.提取网页正文            
+             *    errExist：此处用来判断是否正确提取到正文
             /************************************************************************/
             TextExtract baiduText = new TextExtract(baidu);
             if (baidu.errExist)
             {
-                textBoxBaidu.Text = baidu.errMsg;
-                return -1;
+                textBoxBaidu.Text = baidu.url + " (" + baidu.errMsg + ")";
+                return;
             }
             richTextBoxBaiduText.Text = baidu.text;
-            labelBaiduTextNum.Text = baidu.text.Length.ToString();
+            labelBaiduTextNum.Text    = baidu.text.Length.ToString();
 
             /************************************************************************/
-            /* 3分词                                                                */
+            /* 3.分词                                                                */
             /************************************************************************/
-            TermFrequence baiduTermFreq = new TermFrequence(baidu);
+            TermFrequence baiduTermFreq   = new TermFrequence(baidu);
             richTextBoxBaiduTermFreq.Text = baidu.allWordFreq;
-            labelBaiduWordNum.Text = baidu.wordDic.Count.ToString();
+            labelBaiduWordNum.Text        = baidu.wordDic.Count.ToString();
 
-            return 0;
         }
 
-        private int GetHudongDetails(BaikeEntry hudong)
+        private void GetHudongDetails(BaikeEntry hudong)
         {
             /************************************************************************/
-            /* 1搜索百科词条                                                        */
+            /* 1.搜索百科词条       
+             *    errExist：此处用来判断词条是否存在,SourceHTML会修改其值
             /************************************************************************/
             SourceHTML.GetHudong(hudong);
             if (hudong.errExist)
             {
                 textBoxHudong.Text = hudong.errMsg;
-                return -1;
+                return;
             }
             textBoxHudong.Text = hudong.url;
-            hudong.errExist = true;
+            hudong.errExist    = true;
 
             /************************************************************************/
-            /* 2提取网页正文                                                        */
+            /* 2.提取网页正文          
+             *    errExist：此处用来判断是否正确提取到正文
             /************************************************************************/
             TextExtract HudongText = new TextExtract(hudong);
             if (hudong.errExist)
             {
-                textBoxHudong.Text = hudong.errMsg;
-                return -1;
+                textBoxHudong.Text = hudong.url + " (" + hudong.errMsg + ")";
+                return;
             }
             richTextBoxHudongText.Text = hudong.text;
-            labelHudongTextNum.Text = hudong.text.Length.ToString();
+            labelHudongTextNum.Text    = hudong.text.Length.ToString();
 
             /************************************************************************/
-            /* 3分词                                                                */
+            /* 3.分词                                                                */
             /************************************************************************/
-            TermFrequence HudongTermFreq = new TermFrequence(hudong);
+            TermFrequence HudongTermFreq   = new TermFrequence(hudong);
             richTextBoxHudongTermFreq.Text = hudong.allWordFreq;
-            labelHudongWordNum.Text = hudong.wordDic.Count.ToString();
+            labelHudongWordNum.Text        = hudong.wordDic.Count.ToString();
 
-            return 0;
         }
 
         private void ComputeSimilitude(BaikeEntry baidu, BaikeEntry hudong)
         {
-            SimilitudeVSM simCos = new SimilitudeVSM(baidu, hudong);
-            labelSimilitude.Text = simCos.similitude.ToString("F5");
+            SimilitudeVSM simCos  = new SimilitudeVSM(baidu, hudong);
+            labelSimilitude.Text  = simCos.similitude.ToString("F5");
             labelSameWordNum.Text = baidu.sameWordNum.ToString();
         }
 

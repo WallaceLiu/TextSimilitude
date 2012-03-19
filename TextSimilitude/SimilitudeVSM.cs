@@ -21,16 +21,17 @@ namespace TextSimilitude
 
         public SimilitudeVSM(BaikeEntry A, BaikeEntry B)
         {
-            entryA = A;
-            entryB = B;
+            entryA       = A;
+            entryB       = B;
             innerProduct = 0;
-            normA = normB = 0.0;
-            similitude = 0.0;
+            normA        = 0.0;
+            normB        = 0.0;
+            similitude   = 0.0;
 
             ComputeCosine();
         }
 
-        public void ComputeCosine()
+        private void ComputeCosine()
         {
             foreach (KeyValuePair<string, int> dic in entryA.wordDic)
             {
@@ -47,7 +48,5 @@ namespace TextSimilitude
             similitude = innerProduct / normA / normB;
         }
 
-
     }
-
 }

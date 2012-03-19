@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxTermName = new System.Windows.Forms.TextBox();
             this.buttonCompare = new System.Windows.Forms.Button();
-            this.groupBoxResult = new System.Windows.Forms.GroupBox();
+            this.groupBoxResult = new VIBlend.WinForms.Controls.vGroupBox();
             this.labelSimilitude = new System.Windows.Forms.Label();
             this.labelBaiduTextNum = new System.Windows.Forms.Label();
             this.labelHudongTextNum = new System.Windows.Forms.Label();
@@ -44,48 +44,49 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBoxTeam = new System.Windows.Forms.GroupBox();
+            this.groupBoxTeam = new VIBlend.WinForms.Controls.vGroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPageBaiduText = new System.Windows.Forms.TabPage();
             this.richTextBoxBaiduText = new System.Windows.Forms.RichTextBox();
-            this.tabPageHudongText = new System.Windows.Forms.TabPage();
             this.richTextBoxHudongText = new System.Windows.Forms.RichTextBox();
-            this.tabPageTermFreq = new System.Windows.Forms.TabPage();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.groupBoxBaidu = new System.Windows.Forms.GroupBox();
             this.richTextBoxBaiduTermFreq = new System.Windows.Forms.RichTextBox();
             this.groupBoxHudong = new System.Windows.Forms.GroupBox();
             this.richTextBoxHudongTermFreq = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabPageBaiduWeb = new System.Windows.Forms.TabPage();
             this.webBrowserBaidu = new System.Windows.Forms.WebBrowser();
-            this.tabPageHudongWeb = new System.Windows.Forms.TabPage();
             this.webBrowserHudong = new System.Windows.Forms.WebBrowser();
             this.groupBoxMain = new System.Windows.Forms.GroupBox();
             this.textBoxBaidu = new System.Windows.Forms.TextBox();
             this.textBoxHudong = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxReadme = new VIBlend.WinForms.Controls.vGroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tabControl = new VIBlend.WinForms.Controls.vTabControl();
+            this.tabPageBaiduText = new VIBlend.WinForms.Controls.vTabPage();
+            this.tabPageHudongText = new VIBlend.WinForms.Controls.vTabPage();
+            this.tabPageTermFreq = new VIBlend.WinForms.Controls.vTabPage();
+            this.tabPageBaiduWeb = new VIBlend.WinForms.Controls.vTabPage();
+            this.tabPageHudongWeb = new VIBlend.WinForms.Controls.vTabPage();
+            this.checkBoxPreview = new System.Windows.Forms.CheckBox();
             this.groupBoxResult.SuspendLayout();
             this.groupBoxTeam.SuspendLayout();
-            this.tabControl.SuspendLayout();
-            this.tabPageBaiduText.SuspendLayout();
-            this.tabPageHudongText.SuspendLayout();
-            this.tabPageTermFreq.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.groupBoxBaidu.SuspendLayout();
             this.groupBoxHudong.SuspendLayout();
+            this.groupBoxMain.SuspendLayout();
+            this.groupBoxReadme.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPageBaiduText.SuspendLayout();
+            this.tabPageHudongText.SuspendLayout();
+            this.tabPageTermFreq.SuspendLayout();
             this.tabPageBaiduWeb.SuspendLayout();
             this.tabPageHudongWeb.SuspendLayout();
-            this.groupBoxMain.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -104,7 +105,7 @@
             this.textBoxTermName.Location = new System.Drawing.Point(65, 20);
             this.textBoxTermName.MaxLength = 30;
             this.textBoxTermName.Name = "textBoxTermName";
-            this.textBoxTermName.Size = new System.Drawing.Size(384, 21);
+            this.textBoxTermName.Size = new System.Drawing.Size(315, 21);
             this.textBoxTermName.TabIndex = 0;
             this.textBoxTermName.Text = "中科院研究生院";
             // 
@@ -123,6 +124,7 @@
             // 
             this.groupBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxResult.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxResult.Controls.Add(this.labelSimilitude);
             this.groupBoxResult.Controls.Add(this.labelBaiduTextNum);
             this.groupBoxResult.Controls.Add(this.labelHudongTextNum);
@@ -137,10 +139,12 @@
             this.groupBoxResult.Controls.Add(this.label5);
             this.groupBoxResult.Location = new System.Drawing.Point(588, 12);
             this.groupBoxResult.Name = "groupBoxResult";
-            this.groupBoxResult.Size = new System.Drawing.Size(184, 296);
+            this.groupBoxResult.Size = new System.Drawing.Size(184, 254);
             this.groupBoxResult.TabIndex = 2;
             this.groupBoxResult.TabStop = false;
             this.groupBoxResult.Text = "结果";
+            this.groupBoxResult.UseThemeBorderColor = true;
+            this.groupBoxResult.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.VISTABLUE;
             // 
             // labelSimilitude
             // 
@@ -253,24 +257,27 @@
             // groupBoxTeam
             // 
             this.groupBoxTeam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxTeam.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxTeam.Controls.Add(this.label8);
             this.groupBoxTeam.Controls.Add(this.label7);
             this.groupBoxTeam.Controls.Add(this.label6);
             this.groupBoxTeam.Location = new System.Drawing.Point(588, 450);
             this.groupBoxTeam.Name = "groupBoxTeam";
-            this.groupBoxTeam.Size = new System.Drawing.Size(184, 100);
+            this.groupBoxTeam.Size = new System.Drawing.Size(184, 107);
             this.groupBoxTeam.TabIndex = 4;
             this.groupBoxTeam.TabStop = false;
             this.groupBoxTeam.Text = "小组成员";
+            this.groupBoxTeam.UseThemeBorderColor = true;
+            this.groupBoxTeam.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.VISTABLUE;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(24, 70);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 12);
+            this.label8.Size = new System.Drawing.Size(137, 12);
             this.label8.TabIndex = 2;
-            this.label8.Text = "白朔天 2010280086290";
+            this.label8.Text = "白朔天 201028008629014";
             // 
             // label7
             // 
@@ -279,7 +286,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(137, 12);
             this.label7.TabIndex = 1;
-            this.label7.Text = "李一琳 201028008629024";
+            this.label7.Text = "李一琳 201028008629020";
             // 
             // label6
             // 
@@ -291,55 +298,18 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "张  帆 2010E8008669029";
             // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabPageBaiduText);
-            this.tabControl.Controls.Add(this.tabPageHudongText);
-            this.tabControl.Controls.Add(this.tabPageTermFreq);
-            this.tabControl.Controls.Add(this.tabPageBaiduWeb);
-            this.tabControl.Controls.Add(this.tabPageHudongWeb);
-            this.tabControl.Location = new System.Drawing.Point(12, 142);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(570, 408);
-            this.tabControl.TabIndex = 1;
-            // 
-            // tabPageBaiduText
-            // 
-            this.tabPageBaiduText.Controls.Add(this.richTextBoxBaiduText);
-            this.tabPageBaiduText.Location = new System.Drawing.Point(4, 22);
-            this.tabPageBaiduText.Name = "tabPageBaiduText";
-            this.tabPageBaiduText.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBaiduText.Size = new System.Drawing.Size(562, 382);
-            this.tabPageBaiduText.TabIndex = 0;
-            this.tabPageBaiduText.Text = "【百度】正文";
-            this.tabPageBaiduText.UseVisualStyleBackColor = true;
-            // 
             // richTextBoxBaiduText
             // 
             this.richTextBoxBaiduText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxBaiduText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(207)))));
-            this.richTextBoxBaiduText.Location = new System.Drawing.Point(-4, -3);
+            this.richTextBoxBaiduText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxBaiduText.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxBaiduText.Name = "richTextBoxBaiduText";
-            this.richTextBoxBaiduText.Size = new System.Drawing.Size(570, 389);
+            this.richTextBoxBaiduText.Size = new System.Drawing.Size(560, 382);
             this.richTextBoxBaiduText.TabIndex = 0;
             this.richTextBoxBaiduText.Text = "";
-            // 
-            // tabPageHudongText
-            // 
-            this.tabPageHudongText.Controls.Add(this.richTextBoxHudongText);
-            this.tabPageHudongText.Location = new System.Drawing.Point(4, 22);
-            this.tabPageHudongText.Name = "tabPageHudongText";
-            this.tabPageHudongText.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHudongText.Size = new System.Drawing.Size(562, 382);
-            this.tabPageHudongText.TabIndex = 1;
-            this.tabPageHudongText.Text = "【互动】正文";
-            this.tabPageHudongText.UseVisualStyleBackColor = true;
             // 
             // richTextBoxHudongText
             // 
@@ -347,29 +317,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxHudongText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(207)))));
-            this.richTextBoxHudongText.Location = new System.Drawing.Point(-4, -4);
+            this.richTextBoxHudongText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxHudongText.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxHudongText.Name = "richTextBoxHudongText";
-            this.richTextBoxHudongText.Size = new System.Drawing.Size(566, 390);
+            this.richTextBoxHudongText.Size = new System.Drawing.Size(589, 400);
             this.richTextBoxHudongText.TabIndex = 0;
             this.richTextBoxHudongText.Text = "";
-            // 
-            // tabPageTermFreq
-            // 
-            this.tabPageTermFreq.Controls.Add(this.splitContainer);
-            this.tabPageTermFreq.Controls.Add(this.label4);
-            this.tabPageTermFreq.Location = new System.Drawing.Point(4, 22);
-            this.tabPageTermFreq.Name = "tabPageTermFreq";
-            this.tabPageTermFreq.Size = new System.Drawing.Size(562, 382);
-            this.tabPageTermFreq.TabIndex = 4;
-            this.tabPageTermFreq.Text = "【百度VS互动】词频";
-            this.tabPageTermFreq.UseVisualStyleBackColor = true;
             // 
             // splitContainer
             // 
             this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Location = new System.Drawing.Point(7, 7);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
@@ -379,8 +339,8 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.groupBoxHudong);
-            this.splitContainer.Size = new System.Drawing.Size(559, 355);
-            this.splitContainer.SplitterDistance = 276;
+            this.splitContainer.Size = new System.Drawing.Size(581, 375);
+            this.splitContainer.SplitterDistance = 294;
             this.splitContainer.TabIndex = 0;
             // 
             // groupBoxBaidu
@@ -391,7 +351,7 @@
             this.groupBoxBaidu.Controls.Add(this.richTextBoxBaiduTermFreq);
             this.groupBoxBaidu.Location = new System.Drawing.Point(5, 3);
             this.groupBoxBaidu.Name = "groupBoxBaidu";
-            this.groupBoxBaidu.Size = new System.Drawing.Size(268, 349);
+            this.groupBoxBaidu.Size = new System.Drawing.Size(286, 369);
             this.groupBoxBaidu.TabIndex = 0;
             this.groupBoxBaidu.TabStop = false;
             this.groupBoxBaidu.Text = "百度";
@@ -402,9 +362,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxBaiduTermFreq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(207)))));
+            this.richTextBoxBaiduTermFreq.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBoxBaiduTermFreq.Location = new System.Drawing.Point(6, 20);
             this.richTextBoxBaiduTermFreq.Name = "richTextBoxBaiduTermFreq";
-            this.richTextBoxBaiduTermFreq.Size = new System.Drawing.Size(256, 323);
+            this.richTextBoxBaiduTermFreq.Size = new System.Drawing.Size(275, 343);
             this.richTextBoxBaiduTermFreq.TabIndex = 0;
             this.richTextBoxBaiduTermFreq.Text = "";
             // 
@@ -416,7 +377,7 @@
             this.groupBoxHudong.Controls.Add(this.richTextBoxHudongTermFreq);
             this.groupBoxHudong.Location = new System.Drawing.Point(3, 3);
             this.groupBoxHudong.Name = "groupBoxHudong";
-            this.groupBoxHudong.Size = new System.Drawing.Size(273, 349);
+            this.groupBoxHudong.Size = new System.Drawing.Size(277, 369);
             this.groupBoxHudong.TabIndex = 0;
             this.groupBoxHudong.TabStop = false;
             this.groupBoxHudong.Text = "互动";
@@ -427,9 +388,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxHudongTermFreq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(207)))));
+            this.richTextBoxHudongTermFreq.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBoxHudongTermFreq.Location = new System.Drawing.Point(6, 20);
             this.richTextBoxHudongTermFreq.Name = "richTextBoxHudongTermFreq";
-            this.richTextBoxHudongTermFreq.Size = new System.Drawing.Size(261, 323);
+            this.richTextBoxHudongTermFreq.Size = new System.Drawing.Size(264, 343);
             this.richTextBoxHudongTermFreq.TabIndex = 0;
             this.richTextBoxHudongTermFreq.Text = "";
             // 
@@ -437,56 +399,37 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 361);
+            this.label4.Location = new System.Drawing.Point(10, 385);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(227, 12);
             this.label4.TabIndex = 0;
             this.label4.Text = "提示：只保留了长度和词频都大于1的词项";
             // 
-            // tabPageBaiduWeb
-            // 
-            this.tabPageBaiduWeb.Controls.Add(this.webBrowserBaidu);
-            this.tabPageBaiduWeb.Location = new System.Drawing.Point(4, 22);
-            this.tabPageBaiduWeb.Name = "tabPageBaiduWeb";
-            this.tabPageBaiduWeb.Size = new System.Drawing.Size(562, 382);
-            this.tabPageBaiduWeb.TabIndex = 2;
-            this.tabPageBaiduWeb.Text = "【百度】网页预览";
-            this.tabPageBaiduWeb.UseVisualStyleBackColor = true;
-            // 
             // webBrowserBaidu
             // 
             this.webBrowserBaidu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserBaidu.Location = new System.Drawing.Point(0, 0);
+            this.webBrowserBaidu.Location = new System.Drawing.Point(4, 4);
             this.webBrowserBaidu.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserBaidu.Name = "webBrowserBaidu";
             this.webBrowserBaidu.ScriptErrorsSuppressed = true;
-            this.webBrowserBaidu.Size = new System.Drawing.Size(562, 382);
+            this.webBrowserBaidu.Size = new System.Drawing.Size(587, 398);
             this.webBrowserBaidu.TabIndex = 0;
-            // 
-            // tabPageHudongWeb
-            // 
-            this.tabPageHudongWeb.Controls.Add(this.webBrowserHudong);
-            this.tabPageHudongWeb.Location = new System.Drawing.Point(4, 22);
-            this.tabPageHudongWeb.Name = "tabPageHudongWeb";
-            this.tabPageHudongWeb.Size = new System.Drawing.Size(562, 382);
-            this.tabPageHudongWeb.TabIndex = 3;
-            this.tabPageHudongWeb.Text = "【互动】网页预览";
-            this.tabPageHudongWeb.UseVisualStyleBackColor = true;
             // 
             // webBrowserHudong
             // 
             this.webBrowserHudong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserHudong.Location = new System.Drawing.Point(0, 0);
+            this.webBrowserHudong.Location = new System.Drawing.Point(4, 4);
             this.webBrowserHudong.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserHudong.Name = "webBrowserHudong";
             this.webBrowserHudong.ScriptErrorsSuppressed = true;
-            this.webBrowserHudong.Size = new System.Drawing.Size(562, 382);
+            this.webBrowserHudong.Size = new System.Drawing.Size(587, 398);
             this.webBrowserHudong.TabIndex = 0;
             // 
             // groupBoxMain
             // 
             this.groupBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxMain.Controls.Add(this.checkBoxPreview);
             this.groupBoxMain.Controls.Add(this.textBoxTermName);
             this.groupBoxMain.Controls.Add(this.textBoxBaidu);
             this.groupBoxMain.Controls.Add(this.textBoxHudong);
@@ -536,16 +479,19 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "百度百科";
             // 
-            // groupBox1
+            // groupBoxReadme
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.richTextBox1);
-            this.groupBox1.Location = new System.Drawing.Point(588, 314);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(184, 130);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "说明";
+            this.groupBoxReadme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxReadme.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxReadme.Controls.Add(this.richTextBox1);
+            this.groupBoxReadme.Location = new System.Drawing.Point(588, 272);
+            this.groupBoxReadme.Name = "groupBoxReadme";
+            this.groupBoxReadme.Size = new System.Drawing.Size(184, 172);
+            this.groupBoxReadme.TabIndex = 3;
+            this.groupBoxReadme.TabStop = false;
+            this.groupBoxReadme.Text = "说明";
+            this.groupBoxReadme.UseThemeBorderColor = true;
+            this.groupBoxReadme.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.VISTABLUE;
             // 
             // richTextBox1
             // 
@@ -557,9 +503,134 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(167, 104);
+            this.richTextBox1.Size = new System.Drawing.Size(167, 135);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "  1.程序采用了基于向量空间的余弦相似度来衡量网页间的相似度\n\n  2.只保留了长度和词频都大于1的词项";
+            this.richTextBox1.Text = "  1.程序采用了基于向量空间的余弦相似度来衡量网页间的相似度\n\n  2.只保留了长度和词频都大于1的词项\n\n  3.视机器性能开启网页预览";
+            // 
+            // tabControl
+            // 
+            this.tabControl.AllowAnimations = true;
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.AutoSize = true;
+            this.tabControl.Controls.Add(this.tabPageBaiduText);
+            this.tabControl.Controls.Add(this.tabPageHudongText);
+            this.tabControl.Controls.Add(this.tabPageTermFreq);
+            this.tabControl.Controls.Add(this.tabPageBaiduWeb);
+            this.tabControl.Controls.Add(this.tabPageHudongWeb);
+            this.tabControl.Location = new System.Drawing.Point(12, 142);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.tabControl.Size = new System.Drawing.Size(566, 408);
+            this.tabControl.TabAlignment = VIBlend.WinForms.Controls.vTabPageAlignment.Top;
+            this.tabControl.TabIndex = 5;
+            this.tabControl.TabPages.Add(this.tabPageBaiduText);
+            this.tabControl.TabPages.Add(this.tabPageHudongText);
+            this.tabControl.TabPages.Add(this.tabPageTermFreq);
+            this.tabControl.TabPages.Add(this.tabPageBaiduWeb);
+            this.tabControl.TabPages.Add(this.tabPageHudongWeb);
+            this.tabControl.TabsAreaBackColor = System.Drawing.SystemColors.Control;
+            this.tabControl.TabsAreaBorderColor = System.Drawing.SystemColors.Control;
+            this.tabControl.TabsInitialOffset = 1;
+            this.tabControl.TabsShape = VIBlend.WinForms.Controls.TabsShape.Chrome;
+            this.tabControl.TabsSpacing = 0;
+            this.tabControl.TitleHeight = 20;
+            this.tabControl.UseTabsAreaBackColor = true;
+            this.tabControl.UseTabsAreaBorderColor = true;
+            this.tabControl.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.OFFICE2003SILVER;
+            // 
+            // tabPageBaiduText
+            // 
+            this.tabPageBaiduText.Controls.Add(this.richTextBoxBaiduText);
+            this.tabPageBaiduText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPageBaiduText.HeaderHeight = 20;
+            this.tabPageBaiduText.HeaderWidth = 90;
+            this.tabPageBaiduText.Location = new System.Drawing.Point(0, 20);
+            this.tabPageBaiduText.Name = "tabPageBaiduText";
+            this.tabPageBaiduText.Padding = new System.Windows.Forms.Padding(0);
+            this.tabPageBaiduText.Size = new System.Drawing.Size(566, 388);
+            this.tabPageBaiduText.TabIndex = 3;
+            this.tabPageBaiduText.Text = "[百度]正文";
+            this.tabPageBaiduText.TooltipText = "TabPage";
+            this.tabPageBaiduText.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.OFFICE2003SILVER;
+            this.tabPageBaiduText.Visible = false;
+            // 
+            // tabPageHudongText
+            // 
+            this.tabPageHudongText.Controls.Add(this.richTextBoxHudongText);
+            this.tabPageHudongText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPageHudongText.HeaderHeight = 20;
+            this.tabPageHudongText.HeaderWidth = 90;
+            this.tabPageHudongText.Location = new System.Drawing.Point(0, 20);
+            this.tabPageHudongText.Name = "tabPageHudongText";
+            this.tabPageHudongText.Padding = new System.Windows.Forms.Padding(0);
+            this.tabPageHudongText.Size = new System.Drawing.Size(595, 406);
+            this.tabPageHudongText.TabIndex = 4;
+            this.tabPageHudongText.Text = "[互动]正文";
+            this.tabPageHudongText.TooltipText = "TabPage";
+            this.tabPageHudongText.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.OFFICE2003SILVER;
+            this.tabPageHudongText.Visible = false;
+            // 
+            // tabPageTermFreq
+            // 
+            this.tabPageTermFreq.Controls.Add(this.label4);
+            this.tabPageTermFreq.Controls.Add(this.splitContainer);
+            this.tabPageTermFreq.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPageTermFreq.HeaderHeight = 20;
+            this.tabPageTermFreq.HeaderWidth = 125;
+            this.tabPageTermFreq.Location = new System.Drawing.Point(0, 20);
+            this.tabPageTermFreq.Name = "tabPageTermFreq";
+            this.tabPageTermFreq.Padding = new System.Windows.Forms.Padding(0);
+            this.tabPageTermFreq.Size = new System.Drawing.Size(595, 406);
+            this.tabPageTermFreq.TabIndex = 5;
+            this.tabPageTermFreq.Text = "[百度VS互动]词频";
+            this.tabPageTermFreq.TooltipText = "TabPage";
+            this.tabPageTermFreq.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.OFFICE2003SILVER;
+            this.tabPageTermFreq.Visible = false;
+            // 
+            // tabPageBaiduWeb
+            // 
+            this.tabPageBaiduWeb.Controls.Add(this.webBrowserBaidu);
+            this.tabPageBaiduWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPageBaiduWeb.HeaderHeight = 20;
+            this.tabPageBaiduWeb.HeaderWidth = 115;
+            this.tabPageBaiduWeb.Location = new System.Drawing.Point(0, 20);
+            this.tabPageBaiduWeb.Name = "tabPageBaiduWeb";
+            this.tabPageBaiduWeb.Padding = new System.Windows.Forms.Padding(0);
+            this.tabPageBaiduWeb.Size = new System.Drawing.Size(595, 406);
+            this.tabPageBaiduWeb.TabIndex = 6;
+            this.tabPageBaiduWeb.Text = "[百度]网页预览";
+            this.tabPageBaiduWeb.TooltipText = "TabPage";
+            this.tabPageBaiduWeb.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.OFFICE2003SILVER;
+            this.tabPageBaiduWeb.Visible = false;
+            // 
+            // tabPageHudongWeb
+            // 
+            this.tabPageHudongWeb.Controls.Add(this.webBrowserHudong);
+            this.tabPageHudongWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPageHudongWeb.HeaderHeight = 20;
+            this.tabPageHudongWeb.HeaderWidth = 115;
+            this.tabPageHudongWeb.Location = new System.Drawing.Point(0, 20);
+            this.tabPageHudongWeb.Name = "tabPageHudongWeb";
+            this.tabPageHudongWeb.Padding = new System.Windows.Forms.Padding(0);
+            this.tabPageHudongWeb.Size = new System.Drawing.Size(595, 406);
+            this.tabPageHudongWeb.TabIndex = 7;
+            this.tabPageHudongWeb.Text = "[互动]网页预览";
+            this.tabPageHudongWeb.TooltipText = "TabPage";
+            this.tabPageHudongWeb.VIBlendTheme = VIBlend.Utilities.VIBLEND_THEME.OFFICE2003SILVER;
+            this.tabPageHudongWeb.Visible = false;
+            // 
+            // checkBoxPreview
+            // 
+            this.checkBoxPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxPreview.AutoSize = true;
+            this.checkBoxPreview.Location = new System.Drawing.Point(388, 25);
+            this.checkBoxPreview.Name = "checkBoxPreview";
+            this.checkBoxPreview.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxPreview.TabIndex = 6;
+            this.checkBoxPreview.Text = "网页预览";
+            this.checkBoxPreview.UseVisualStyleBackColor = true;
             // 
             // TextSimilitudeForm
             // 
@@ -567,9 +638,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBoxMain);
             this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.groupBoxReadme);
+            this.Controls.Add(this.groupBoxMain);
             this.Controls.Add(this.groupBoxTeam);
             this.Controls.Add(this.groupBoxResult);
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -580,22 +651,23 @@
             this.groupBoxResult.PerformLayout();
             this.groupBoxTeam.ResumeLayout(false);
             this.groupBoxTeam.PerformLayout();
-            this.tabControl.ResumeLayout(false);
-            this.tabPageBaiduText.ResumeLayout(false);
-            this.tabPageHudongText.ResumeLayout(false);
-            this.tabPageTermFreq.ResumeLayout(false);
-            this.tabPageTermFreq.PerformLayout();
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.ResumeLayout(false);
             this.groupBoxBaidu.ResumeLayout(false);
             this.groupBoxHudong.ResumeLayout(false);
-            this.tabPageBaiduWeb.ResumeLayout(false);
-            this.tabPageHudongWeb.ResumeLayout(false);
             this.groupBoxMain.ResumeLayout(false);
             this.groupBoxMain.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.groupBoxReadme.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.tabPageBaiduText.ResumeLayout(false);
+            this.tabPageHudongText.ResumeLayout(false);
+            this.tabPageTermFreq.ResumeLayout(false);
+            this.tabPageTermFreq.PerformLayout();
+            this.tabPageBaiduWeb.ResumeLayout(false);
+            this.tabPageHudongWeb.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -604,20 +676,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxTermName;
         private System.Windows.Forms.Button buttonCompare;
-        private System.Windows.Forms.GroupBox groupBoxResult;
-        private System.Windows.Forms.GroupBox groupBoxTeam;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPageBaiduText;
-        private System.Windows.Forms.TabPage tabPageHudongText;
+        private VIBlend.WinForms.Controls.vGroupBox groupBoxResult;
+        private VIBlend.WinForms.Controls.vGroupBox groupBoxReadme;
+        private VIBlend.WinForms.Controls.vGroupBox groupBoxTeam;
         private System.Windows.Forms.GroupBox groupBoxMain;
         private System.Windows.Forms.TextBox textBoxHudong;
         private System.Windows.Forms.TextBox textBoxBaidu;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBoxBaiduText;
-        private System.Windows.Forms.TabPage tabPageBaiduWeb;
-        private System.Windows.Forms.TabPage tabPageHudongWeb;
-        private System.Windows.Forms.TabPage tabPageTermFreq;
         private System.Windows.Forms.WebBrowser webBrowserBaidu;
         private System.Windows.Forms.WebBrowser webBrowserHudong;
         private System.Windows.Forms.RichTextBox richTextBoxHudongText;
@@ -634,7 +701,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -644,6 +710,13 @@
         private System.Windows.Forms.Label labelBaiduWordNum;
         private System.Windows.Forms.Label labelHudongTextNum;
         private System.Windows.Forms.Label labelBaiduTextNum;
+        private VIBlend.WinForms.Controls.vTabControl tabControl;
+        private VIBlend.WinForms.Controls.vTabPage tabPageBaiduText;
+        private VIBlend.WinForms.Controls.vTabPage tabPageHudongText;
+        private VIBlend.WinForms.Controls.vTabPage tabPageTermFreq;
+        private VIBlend.WinForms.Controls.vTabPage tabPageBaiduWeb;
+        private VIBlend.WinForms.Controls.vTabPage tabPageHudongWeb;
+        private System.Windows.Forms.CheckBox checkBoxPreview;
     }
 }
 

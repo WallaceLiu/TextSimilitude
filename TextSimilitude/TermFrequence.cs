@@ -9,9 +9,8 @@ namespace TextSimilitude
 {
     class TermFrequence
     {
-        public string[] stopWords;   //停用词表
-
-        public BaikeEntry baikeEntry;
+        private string[] stopWords;   //停用词表
+        private BaikeEntry baikeEntry;
 
         private TermFrequence()
         {
@@ -47,8 +46,8 @@ namespace TextSimilitude
         {
             //获取停用词表
             StreamReader sr = new StreamReader("stopWords.txt", Encoding.UTF8);
-            string tmp = sr.ReadToEnd();
-            stopWords = Regex.Split(tmp, @"\r\n");
+            string tmp      = sr.ReadToEnd();
+            stopWords       = Regex.Split(tmp, @"\r\n");
 
             //去除停用词
             foreach (string str in stopWords)
@@ -62,10 +61,7 @@ namespace TextSimilitude
             foreach (KeyValuePair<string, int> dic in baikeEntry.wordDic)
             {
                 if (Regex.Replace(dic.Key, @"(?is)\s*", "").Length != 0)
-                {
                     newDic.Add(dic.Key, dic.Value);
-                }
-                
             }
             baikeEntry.wordDic = newDic;
         }
@@ -85,16 +81,14 @@ namespace TextSimilitude
         private void UpdateTermDic()
         {
             baikeEntry.wordDic.Clear();
-            foreach (WordFreq t in baikeEntry.wordList)
-                baikeEntry.wordDic.Add(t.name, t.freq);
+            foreach (WordFreq wf in baikeEntry.wordList)
+                baikeEntry.wordDic.Add(wf.name, wf.freq);
         }
 
         private void GetTermShow()
         {
-            foreach (WordFreq tf in baikeEntry.wordList)
-            {
-                baikeEntry.allWordFreq += string.Format("{0}:{1}\n", tf.name, tf.freq);
-            }
+            foreach (WordFreq wf in baikeEntry.wordList)
+                baikeEntry.allWordFreq += string.Format("{0}:{1}\n", wf.name, wf.freq);
         }
     }
 }

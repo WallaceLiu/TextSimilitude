@@ -8,7 +8,7 @@ namespace TextSimilitude
 {
     class TextExtract
     {
-        private const int blockHeight = 3;    // 行快大小
+        private const int blockHeight = 3;    // 行快大小(方向向下）
         private const int threshold   = 150;  // 阈值
 
         private BaikeEntry baikeEntry;
@@ -23,7 +23,7 @@ namespace TextSimilitude
         {
         }
 
-        // 构造函数,参数为HTML源码
+        // 构造函数
         public TextExtract(BaikeEntry newBaikeEntry)
         {
             baikeEntry = newBaikeEntry;
@@ -38,14 +38,15 @@ namespace TextSimilitude
         // 提取网页正文
         public void extract()
         {
-            extractTitle();  // 提取标题
-            extractBody();   // 提取<body>标签中的内容
-            removeTags();    // 去除textBody中的HTML标签
-            optimizeBody();
-            extractText();   // 提取网页正文
-            extractPreview();  //提取预览页面的HTML代码
+            extractTitle();    // 提取标题
+            extractBody();     // 提取<body>标签中的内容
+            removeTags();      // 去除textBody中的HTML标签
+            optimizeBody();    // 根据百度和互动的页面布局特征确定正文范围
+            extractText();     // 提取网页正文
+            extractPreview();  // 提取预览页面的HTML代码（去除图片和JS）
 
-            baikeEntry.textTmp = textBody;
+            /****************************    测试   *******************************/
+            //baikeEntry.textTmp = textBody;
         }
 
         private void extractTitle()
@@ -69,19 +70,19 @@ namespace TextSimilitude
 
         private void removeTags()
         {
-            string docType = @"(?is)<!DOCTYPE.*?>";
-            string comment = @"(?is)<!--.*?-->";
-            string js = @"(?is)<script.*?>.*?</script>";
-            string css = @"(?is)<style.*?>.*?</style>";
+            string docType     = @"(?is)<!DOCTYPE.*?>";
+            string comment     = @"(?is)<!--.*?-->";
+            string js          = @"(?is)<script.*?>.*?</script>";
+            string css         = @"(?is)<style.*?>.*?</style>";
             string specialChar = @"&.{2,8};|&#.{2,8};";
-            string otherTag = @"(?is)<.*?>";
+            string otherTag    = @"(?is)<.*?>";
 
-            textBody = Regex.Replace(textBody, docType, "");
-            textBody = Regex.Replace(textBody, comment, "");
-            textBody = Regex.Replace(textBody, js, "");
-            textBody = Regex.Replace(textBody, css, "");
+            textBody = Regex.Replace(textBody, docType,     "");
+            textBody = Regex.Replace(textBody, comment,     "");
+            textBody = Regex.Replace(textBody, js,          "");
+            textBody = Regex.Replace(textBody, css,         "");
             textBody = Regex.Replace(textBody, specialChar, "");
-            textBody = Regex.Replace(textBody, otherTag, "");
+            textBody = Regex.Replace(textBody, otherTag,    "");
         }
 
         private void optimizeBody()
@@ -92,22 +93,23 @@ namespace TextSimilitude
             if (baikeEntry.siteName == "baidu")
             {
                 begin = textBody.IndexOf("百科名片");
-                end = textBody.IndexOf("词条图册更多图册");
+                end   = textBody.IndexOf("词条图册更多图册");
             }
             else
             {
                 begin = textBody.IndexOf("本词条由");
-                begin = textBody.IndexOf("目录", begin>0?begin:0);
-                end = textBody.LastIndexOf("上传图片");
-                end = textBody.LastIndexOf("附图", end>0?end:0);
+                begin = textBody.IndexOf("目录", begin > 0 ? begin : 0);
+                end   = textBody.LastIndexOf("上传图片");
+                end   = textBody.LastIndexOf("附图", end > 0 ? end : textBody.Length);
             }
-            if (begin < end && begin>0 && end >0)
+
+            if (begin < end && begin > 0 && end > 0)
                 textBody = textBody.Substring(begin, end - begin);
         }
 
         private void extractText()
         {
-            // 统计去除空白字符后每个行块所含总字数
+            // 去除每行的空白字符
             lines = textBody.Split('\n');
             for (int i = 0; i < lines.Length; i++)
                 lines[i] = Regex.Replace(lines[i], @"(?is)\s*", "");
@@ -119,6 +121,7 @@ namespace TextSimilitude
                     lines[i] = "";
             }
 
+            // 统计去除空白字符后每个行块所含总字数
             for (int i = 0; i < lines.Length - blockHeight; i++)
             {
                 int len = 0;
@@ -127,46 +130,38 @@ namespace TextSimilitude
                 blockLen.Add(len);
             }
 
-            // 寻找正文起始和结束行,并拼接
+            // 寻找各个正文块起始和结束行,并进行拼接
             textStart = FindTextStart(0);
 
             if (textStart == 0)
-                baikeEntry.errMsg = "未能提取到正文！";
+                baikeEntry.errMsg = "未能提取到正文!";
             else
             {
                 while (textEnd < lines.Length)
                 {
-                    textEnd = FindTextEnd(textStart);
+                    textEnd          = FindTextEnd(textStart);
                     baikeEntry.text += GetText();
-                    textStart = FindTextStart(textEnd);
+                    textStart        = FindTextStart(textEnd);
                     if (textStart == 0)
                         break;
                     textEnd = textStart;
                 }
-
             }
+
         }
 
-        private void extractPreview()
-        {
-            baikeEntry.preview = Regex.Replace(baikeEntry.sourceHTML, @"(?is)<[^>]*jpg.*?>", "");
-            baikeEntry.preview = Regex.Replace(baikeEntry.preview, @"(?is)<[^>]*gif.*?>", "");
-            baikeEntry.preview = Regex.Replace(baikeEntry.preview, @"(?is)<[^>]*js.*?>", "");
-        }
-
-        // 如果一个行块大小超过阈值,且紧跟其后的1个行块大小都不为0,则此行块为起始点
+        // 如果一个行块大小超过阈值,且紧跟其后的1个行块大小不为0,则此行块为起始点（即连续的4行文字长度超过阈值）
         private int FindTextStart(int index)
         {
             for (int i = index; i < blockLen.Count - 1; i++)
             {
-                if (blockLen[i] > threshold
-                    && blockLen[i + 1] > 0)
+                if (blockLen[i] > threshold && blockLen[i + 1] > 0)
                     return i;
             }
             return 0;
         }
 
-        // 起始点之后,如果2个连续行块大小都为0,则认为其是结束点
+        // 起始点之后,如果2个连续行块大小都为0,则认为其是结束点（即连续的4行文字长度为0）
         private int FindTextEnd(int index)
         {
             for (int i = index + 1; i < blockLen.Count - 1; i++)
@@ -188,5 +183,15 @@ namespace TextSimilitude
             baikeEntry.errExist = false;
             return sb.ToString();
         }
+
+        private void extractPreview()
+        {
+            baikeEntry.preview = Regex.Replace(baikeEntry.sourceHTML, @"(?is)<[^>]*jpg.*?>",           "");
+            baikeEntry.preview = Regex.Replace(baikeEntry.preview,    @"(?is)<[^>]*gif.*?>",           "");
+            baikeEntry.preview = Regex.Replace(baikeEntry.preview,    @"(?is)<[^>]*png.*?>",           "");
+            baikeEntry.preview = Regex.Replace(baikeEntry.preview,    @"(?is)<[^>]*js.*?>" ,           "");
+            baikeEntry.preview = Regex.Replace(baikeEntry.preview,    @"(?is)<script.*?>.*?</script>", "");
+        }
+
     }
 }

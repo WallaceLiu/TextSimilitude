@@ -5,9 +5,10 @@ using System.Text;
 
 namespace TextSimilitude
 {
+    //百科词条相关信息总览
     public class BaikeEntry
     {
-        public string siteName;     //网站名字
+        public string siteName;     //网站名字(baidu or hudong)
         public string entryName;    //词条名称
         public string url;          //词条网址
         public string sourceHTML;   //完整的网页源文件
@@ -16,7 +17,6 @@ namespace TextSimilitude
         public string text;         //网页正文
         public string allWordFreq;  //所有词项及其词频
         public int    sameWordNum;  //相同词项的个数
-        public string textTmp;  //测试文本
 
         //词项列表和字典（筛选条件：词频和词项长度都大于1）
         public List<WordFreq>          wordList;  //根据词频排序后的列表
@@ -25,7 +25,10 @@ namespace TextSimilitude
         //错误信息
         public bool   errExist;
         public string errMsg;
-        
+
+        /******************** 测试 *********************/
+        //public string textTmp;      
+
         private BaikeEntry()
         {
         }
@@ -51,7 +54,7 @@ namespace TextSimilitude
 
     }
 
-    //每个单词的名字和词频
+    //分词后每个单词的名字和词频
     public class WordFreq
     {
         public string name;
